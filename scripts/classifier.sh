@@ -104,14 +104,6 @@ read -r -d '' APPLICATION_DB_POST << APPLICATION_DB_JSON
 }
 APPLICATION_DB_JSON
 
-read -r -d '' JENKINS_POST << JENKINS
-{ "parent": "$(find_guid 'default')",
-  "name": "Jenkins",
-  "description": "Jenkins",
-  "rule": ["or", ["=", "name", "jenkins.infra.puppetlabs.demo"]],
-  "classes": {"profile::jenkins_enterprise": {}}
-}
-JENKINS
 
 read -r -d '' PE_LINUX_GROUP << LINUX_JSON
 {
@@ -208,8 +200,6 @@ MCO_JSON
 
 
 curl -X POST -H 'Content-Type: application/json' -d "$PE_MASTER_POST" $NC_CURL_OPT --insecure https://localhost:4433/classifier-api/v1/groups/$(find_guid 'PE Master')
-
-curl -X POST -H 'Content-Type: application/json' -d "$JENKINS_POST" $NC_CURL_OPT --insecure https://localhost:4433/classifier-api/v1/groups
 
 curl -X POST -H 'Content-Type: application/json' -d "$APPLICATION_POST" $NC_CURL_OPT --insecure https://localhost:4433/classifier-api/v1/groups
 curl -X POST -H 'Content-Type: application/json' -d "$APPLICATION_WEB_POST" $NC_CURL_OPT --insecure https://localhost:4433/classifier-api/v1/groups
