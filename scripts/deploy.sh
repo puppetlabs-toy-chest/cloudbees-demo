@@ -89,6 +89,8 @@ cat << EOF > /etc/r10k.yaml
     basedir: /etc/puppetlabs/puppet/environments
 EOF
 
+puppet config set autosign true --section master
+
 rm -rf /etc/puppetlabs/puppet/environments/*
 /opt/puppet/bin/gem install r10k
 yum install git
