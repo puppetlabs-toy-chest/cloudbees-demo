@@ -89,12 +89,18 @@ cat << EOF > /etc/r10k.yaml
     basedir: /etc/puppetlabs/puppet/environments
 EOF
 
+rm -rf /etc/puppetlabs/puppet/environments/*
+/opt/puppet/bin/gem install r10k
+yum install git
 /opt/puppet/bin/r10k deploy environment -p
 
-/bin/bash $basename/refresh_classes.sh
-/bin/bash $basename/classifier.sh
-/bin/bash $basename/rbac.sh
+rm /etc/puppetlabs/puppet/hiera.yaml
+ln -s /etc/puppetlabs/puppet/environments/production/hiera.yaml /etc/puppetlabs/puppet/hiera.yaml
 
-/bin/bash $basename/connect_ds.sh
+/bin/bash /vagrant/scripts/refresh_classes.sh
+/bin/bash /vagrant/scripts/classifier.sh
+/bin/bash /vagrant/scripts/rbac.sh
+
+/bin/bash /vagrant/scripts/connect_ds.sh
 
 /opt/puppet/bin/puppet agent --onetime --no-daemonize --color=false --verbose
