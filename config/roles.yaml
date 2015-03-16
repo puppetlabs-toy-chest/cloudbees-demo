@@ -20,6 +20,9 @@ roles:
       - type: pe_bootstrap
         role: !ruby/sym master
         autosign:
+          - jenkins.inf.puppetlabs.demo
+          - wordpress-staging.pdx.puppetlabs.com
+          - wordpress.pdx.puppetlabs.demo
           - centos65a.pdx.puppetlabs.demo
           - centos65b.syd.puppetlabs.demo
           - centos70a.pdx.puppetlabs.demo
@@ -55,6 +58,8 @@ roles:
           curl -sk https://master.inf.puppetlabs.demo:8140/packages/current/install.bash | /bin/bash 
       - type: shell
         inline: 'iptables -F'
+      - type: shell
+        inline: '/opt/puppet/bin/puppet agent -t'
   
   darwin_agent:
     private_networks:
