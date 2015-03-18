@@ -93,7 +93,7 @@ puppet config set autosign true --section master
 
 rm -rf /etc/puppetlabs/puppet/environments/*
 /opt/puppet/bin/gem install r10k
-yum install git
+yum install -y git
 /opt/puppet/bin/r10k deploy environment -p
 
 rm /etc/puppetlabs/puppet/hiera.yaml

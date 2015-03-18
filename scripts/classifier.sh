@@ -70,6 +70,18 @@ read -r -d '' STAGING << STAGING_JSON
 }
 STAGING_JSON
 
+read -r -d '' STAGING_POST << STAGING_JSON
+{"environment_trumps": true,
+  "parent": "$(find_guid 'default')",
+  "name": "Staging Environment",
+  "variables": {},
+  "environment": "staging",
+  "description": "Set staging environment",
+  "classes": {},
+  "rule": ["~", "name", ".*staging.*"]
+}
+STAGING_JSON
+
 read -r -d '' APPLICATION_POST << APPLICATION_JSON
 {"environment_trumps": false,
   "parent": "$(find_guid 'default')",
@@ -204,6 +216,8 @@ curl -X POST -H 'Content-Type: application/json' -d "$PE_MASTER_POST" $NC_CURL_O
 curl -X POST -H 'Content-Type: application/json' -d "$APPLICATION_POST" $NC_CURL_OPT --insecure https://localhost:4433/classifier-api/v1/groups
 curl -X POST -H 'Content-Type: application/json' -d "$APPLICATION_WEB_POST" $NC_CURL_OPT --insecure https://localhost:4433/classifier-api/v1/groups
 curl -X POST -H 'Content-Type: application/json' -d "$APPLICATION_DB_POST" $NC_CURL_OPT --insecure https://localhost:4433/classifier-api/v1/groups
+
+curl -X POST -H 'Content-Type: application/json' -d "$STAGING_POST" $NC_CURL_OPT --insecure https://localhost:4433/classifier-api/v1/groups
 
 # is admin fact is apparently broken right now on windows / inconsistent based on mco vs service run, etc
 #curl -X POST -H 'Content-Type: application/json' -d "$PE_MCO_GROUP" $NC_CURL_OPT --insecure https://localhost:4433/classifier-api/v1/groups/$(find_guid 'PE MCollective')
