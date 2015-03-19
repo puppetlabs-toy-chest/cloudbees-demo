@@ -5,10 +5,10 @@ vagrant snap rollback wordpress.pdx.puppetlabs.demo --name demo_start
 
 cd ~/cloudbees/profile
 git co nginx
-git reset --hard 9cd85d3
+git reset --hard d7d2094
 git push ccaum nginx --force
 git co master
-git reset --hard ed39419
+git reset --hard 3502b10
 git push puppetlabs master --force
 
 cd ~/cloudbees/site
