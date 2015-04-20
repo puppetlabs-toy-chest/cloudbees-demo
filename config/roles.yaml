@@ -21,7 +21,7 @@ roles:
         role: !ruby/sym master
         autosign:
           - jenkins.inf.puppetlabs.demo
-          - wordpress-staging.pdx.puppetlabs.com
+          - wordpress-staging.pdx.puppetlabs.demo
           - wordpress.pdx.puppetlabs.demo
           - centos65a.pdx.puppetlabs.demo
           - centos65b.syd.puppetlabs.demo
