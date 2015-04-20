@@ -6,3 +6,4 @@ log
 Gemfile.lock
 Puppetfile.lock
 *war
+id_rsa
