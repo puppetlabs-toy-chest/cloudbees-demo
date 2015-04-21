@@ -5,12 +5,12 @@ vagrant snap rollback wordpress.pdx.puppetlabs.demo --name demo_start
 
 cd ~/projects/cloudbees/cloudbees-profile
 git co nginx
-git reset --hard d47163a
+git reset --hard 1802465
 git push ccaum nginx --force
 git co master
-git reset --hard 239c066
+git reset --hard 7b41567
 git push puppetlabs master --force
-git pull_request -b puppetlabs:master --title "Use nginx intead of apache"
+#git pull_request -b puppetlabs:master --title "Use nginx intead of apache"
 
 cd ~/projects/cloudbees/cloudbees-site
 git co staging
